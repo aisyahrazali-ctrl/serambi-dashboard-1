@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serambi F&B — Halaman Utama</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:      #050d1a;
+      --navy:    #0a1628;
+      --card:    #0f2040;
+      --border:  #1e3a5f;
+      --accent:  #1e90ff;
+      --text:    #e8f0fe;
+      --muted:   #7a9cc0;
+      --white:   #ffffff;
+      --success: #00cc88;
+    }
+
+    html, body {
+      min-height: 100vh;
+      font-family: -apple-system, "Segoe UI", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      background: radial-gradient(ellipse at 50% 0%, #0d2550 0%, #050d1a 65%);
+      border-bottom: 1px solid var(--border);
+      padding: 64px 24px 52px;
+      text-align: center;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      font-size: 0.68rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(30,144,255,0.1);
+      border: 1px solid rgba(30,144,255,0.25);
+      padding: 5px 16px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      font-weight: 900;
+      color: var(--white);
+      letter-spacing: 5px;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+
+    .hero h1 span { color: var(--accent); }
+
+    .hero-sub {
+      font-size: 0.95rem;
+      color: var(--muted);
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-divider {
+      width: 56px;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 2px;
+      margin: 0 auto 24px;
+    }
+
+    .hero-desc {
+      max-width: 480px;
+      margin: 0 auto 36px;
+      font-size: 0.9rem;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .btn-enter {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      background: var(--accent);
+      color: var(--white);
+      font-size: 0.95rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-enter:hover {
+      background: #3aa0ff;
+      transform: translateY(-2px);
+    }
+
+    .btn-enter:active { transform: scale(0.97); }
+
+    .btn-enter .arrow {
+      font-size: 1.1rem;
+      transition: transform 0.2s;
+    }
+
+    .btn-enter:hover .arrow { transform: translateX(4px); }
+
+    /* ── FEATURES ── */
+    .container {
+      max-width: 840px;
+      margin: 0 auto;
+      padding: 52px 24px 64px;
+    }
+
+    .section-label {
+      font-size: 0.68rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-left: 3px solid var(--accent);
+      padding-left: 10px;
+      margin-bottom: 24px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .feature-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .feature-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--accent);
+      border-radius: 12px 12px 0 0;
+    }
+
+    .feature-icon {
+      font-size: 1.6rem;
+      margin-bottom: 10px;
+    }
+
+    .feature-title {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .feature-desc {
+      font-size: 0.78rem;
+      color: var(--muted);
+      line-height: 1.6;
+    }
+
+    /* ── INFO ROW ── */
+    .info-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .info-pill {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-align: center;
+    }
+
+    .info-pill .val {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--white);
+    }
+
+    .info-pill .lbl {
+      font-size: 0.72rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-top: 4px;
+    }
+
+    /* ── LOGIN HINT ── */
+    .login-hint {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 22px 24px;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+
+    .hint-icon {
+      font-size: 1.6rem;
+      flex-shrink: 0;
+    }
+
+    .hint-body .hint-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .hint-body .hint-creds {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .hint-body .hint-creds code {
+      background: rgba(30,144,255,0.15);
+      color: var(--accent);
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-family: monospace;
+      font-size: 0.82rem;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.75rem;
+      color: var(--muted);
+    }
+
+    /* scrollbar */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 4px; }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-badge">Projek Usahawan · Food &amp; Beverage</div>
+    <h1>SER<span>AMBI</span></h1>
+    <div class="hero-sub">Sales Dashboard</div>
+    <div class="hero-divider"></div>
+    <p class="hero-desc">
+      Platform pemantauan jualan mingguan Projek Serambi. Lihat trend bulanan, prestasi menu, penjejak jualan mingguan dan muat turun resit PDF dengan mudah.
+    </p>
+    <a href="serambi-dashboard.html" class="btn-enter">
+      Masuk ke Dashboard <span class="arrow">→</span>
+    </a>
+  </section>
+
+  <div class="container">
+
+    <!-- INFO PILLS -->
+    <div class="info-row">
+      <div class="info-pill">
+        <div class="val">RM 6,000</div>
+        <div class="lbl">Jumlah Jualan</div>
+      </div>
+      <div class="info-pill">
+        <div class="val">35</div>
+        <div class="lbl">Minggu Operasi</div>
+      </div>
+      <div class="info-pill">
+        <div class="val">18</div>
+        <div class="lbl">Item Menu</div>
+      </div>
+    </div>
+
+    <!-- FEATURES -->
+    <div class="section-label">Ciri-ciri Dashboard</div>
+    <div class="features">
+
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <div class="feature-title">Sales Overview</div>
+        <div class="feature-desc">Jumlah jualan keseluruhan, purata mingguan dan carta trend bulanan dari Nov 2025 hingga Jun 2026.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🍽️</div>
+        <div class="feature-title">Menu Performance</div>
+        <div class="feature-desc">Analisis menu paling laris dan menu yang menyumbang hasil tertinggi dengan carta bar dan donut.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📅</div>
+        <div class="feature-title">Weekly Sales Tracker</div>
+        <div class="feature-desc">Perbandingan jualan setiap minggu sepanjang tempoh operasi dalam bentuk carta bar interaktif.</div>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📄</div>
+        <div class="feature-title">Resit PDF</div>
+        <div class="feature-desc">Jana dan muat turun resit jualan mingguan dalam format PDF dengan no. rujukan automatik SRM-YYYY-W##.</div>
+      </div>
+
+    </div>
+
+    <!-- LOGIN HINT -->
+    <div class="login-hint">
+      <div class="hint-icon">🔐</div>
+      <div class="hint-body">
+        <div class="hint-title">Maklumat Log Masuk</div>
+        <div class="hint-creds">
+          Username: <code>serambi</code> &nbsp;&nbsp; Password: <code>serambi123</code>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <footer>
+    Made with IBM Bob &nbsp;·&nbsp; Projek Serambi Food &amp; Beverage
+  </footer>
+
+</body>
+</html>
